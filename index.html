@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Name — Portfolio</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <nav class="nav">
+        <a class="brand" href="#top">Your Name</a>
+        <div class="nav-links">
+          <a href="#projects">Projects</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="top" class="container">
+      <section class="hero">
+        <h1>Hi, I’m Ribesh Shrestha.</h1>
+        <p class="subtitle">
+          DevOps / Cloud Engineer — AWS • Terraform • Kubernetes
+        </p>
+        <div class="cta">
+          <a class="btn" href="#projects">View Projects</a>
+          <a class="btn btn-ghost" href="#contact">Contact</a>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <h2>Projects</h2>
+
+        <div class="grid">
+          <article class="card">
+            <h3>Project One</h3>
+            <p>1–2 lines about what it does and what you used.</p>
+            <div class="links">
+              <a href="https://github.com/yourname/project-one" target="_blank" rel="noreferrer">Code</a>
+              <a href="https://example.com" target="_blank" rel="noreferrer">Live</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Project Two</h3>
+            <p>Short description + impact (performance/cost/reliability).</p>
+            <div class="links">
+              <a href="https://github.com/yourname/project-two" target="_blank" rel="noreferrer">Code</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Project Three</h3>
+            <p>Short description + stack.</p>
+            <div class="links">
+              <a href="https://github.com/yourname/project-three" target="_blank" rel="noreferrer">Code</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="about" class="section">
+        <h2>About</h2>
+        <p>
+          Write 3–5 lines: what you do, what you’re strong at, and what you’re looking for.
+          Add 2–4 technologies you’re confident with.
+        </p>
+
+        <ul class="bullets">
+          <li>AWS: EC2, S3, IAM, VPC</li>
+          <li>IaC: Terraform, Helm</li>
+          <li>Containers: Docker, Kubernetes</li>
+          <li>CI/CD: GitHub Actions, GitLab CI</li>
+        </ul>
+      </section>
+
+      <section id="contact" class="section">
+        <h2>Contact</h2>
+        <p>
+          Email: <a href="mailto:you@example.com">you@example.com</a>
+        </p>
+        <div class="links">
+          <a href="https://github.com/yourname" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/yourname" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href="https://x.com/yourname" target="_blank" rel="noreferrer">X</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© <span id="year"></span> Your Name</p>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
