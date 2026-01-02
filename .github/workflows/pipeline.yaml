@@ -33,11 +33,11 @@ jobs:
         run:  |
           touch mykey.pem
           echo $SSH_KEY64 | base64 -d > mykey.pem && chmod 400 mykey.pem
-          ssh-keygen -R $SERVER_IP
+          ssh-keygen -R ${SERVER_IP}
         env:
           SSH_KEY64: ${{ secrets.SSH_KEY64 }}
 
 
       - name: "Deploy the code to server"
         run:  |
-          ssh -t ec2-user@SERVER_IP -i mykey.pem 'cd /urs/share/nginx/html && git pull origin main'
+          ssh -t ec2-user@${SERVER_IP} -i mykey.pem 'cd /usr/share/nginx/html && git pull origin main'
