@@ -55,6 +55,6 @@ jobs:
         run:  |
           IMAGE="ribeshshr/learning-cicd:${GITHUB_RUN_NUMBER}"
           ssh -T ec2-user@${SERVER_IP} -i mykey.pem \
-            "docker stop learning-cicd  && \
-             docker rm learning-cicd && \
+            "docker stop learning-cicd || true && \
+             docker rm learning-cicd || true && \
              docker run -d --name learning-cicd -p 8081:80 ${IMAGE}"
