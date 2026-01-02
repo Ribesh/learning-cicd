@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - docker
 
 
 jobs:
@@ -40,4 +41,4 @@ jobs:
 
       - name: "Deploy the code to server"
         run:  |
-          ssh -t ec2-user@${SERVER_IP} -i mykey.pem 'cd /usr/share/nginx/html && git pull origin main'
+          ssh -t ec2-user@${SERVER_IP} -i mykey.pem 'docker build -t learning-cicd:latest . && docker run -d -p 80:80 learning-cicd:latest'
