@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SERVER_IP: ${{ vars.SERVER_IP }}
+ 
 
     steps:
       - uses: actions/checkout@v5
@@ -39,6 +40,16 @@ jobs:
           SSH_KEY64: ${{ secrets.SSH_KEY64 }}
 
 
+      - name: "Build and push the image to Docker Registry"
+        run:  |
+          docker build -t ${DOCKER_USERNAME}/learning-cicd:latest .
+          echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+          docker push ${DOCKER_USERNAME}/learning-cicd:latest
+        env:
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKER_USERNAME: $ {{ vars.DOCKER_USERNAME }}
+
+
       - name: "Deploy the code to server"
         run:  |
-          ssh -t ec2-user@${SERVER_IP} -i mykey.pem 'docker build -t learning-cicd:latest . && docker run -d -p 80:80 learning-cicd:latest'
+          ssh -T ec2-user@${SERVER_IP} -i mykey.pem 'docker run -d -p 8081:80 ribeshshr/learning-cicd:latest'
