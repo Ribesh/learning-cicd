@@ -48,7 +48,7 @@ jobs:
           docker push "$DOCKER_USERNAME/learning-cicd:latest"
         env:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-          DOCKER_USERNAME: $ {{ vars.DOCKER_USERNAME }}
+          DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
 
 
       - name: "Deploy the code to server"
