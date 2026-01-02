@@ -53,4 +53,8 @@ jobs:
 
       - name: "Deploy the code to server"
         run:  |
-          ssh -T ec2-user@${SERVER_IP} -i mykey.pem 'docker stop learning-cicd && docker rm learning-cicd && docker run -d --name learning-cicd -p 8081:80 ribeshshr/learning-cicd:$GITHUB_RUN_NUMBER'
+          IMAGE="ribeshshr/learning-cicd:${GITHUB_RUN_NUMBER}"
+          ssh -T ec2-user@${SERVER_IP} -i mykey.pem \
+            "docker stop learning-cicd  && \
+             docker rm learning-cicd && \
+             docker run -d --name learning-cicd -p 8081:80 ${IMAGE}"
