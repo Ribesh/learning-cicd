@@ -43,9 +43,9 @@ jobs:
       - name: "Build and push the image to Docker Registry"
         run:  |
           docker ps
-          docker build -t $DOCKER_USERNAME/learning-cicd:latest .
+          docker build -t "$DOCKER_USERNAME/learning-cicd:latest" .
           echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
-          docker push $DOCKER_USERNAME/learning-cicd:latest
+          docker push "$DOCKER_USERNAME/learning-cicd:latest"
         env:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
           DOCKER_USERNAME: $ {{ vars.DOCKER_USERNAME }}
