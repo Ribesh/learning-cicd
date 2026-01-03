@@ -3,7 +3,7 @@
 
 ## Workflow:
 1. User pushes latest changes of code to Github
-2. **Github Actions** is triggered on `main` and `develop` branch
+2. **Github Actions** is triggered on `main` and `docker` branch
     -   Github Action runs on `ubuntu-latest`
     -   Firstly, it clones the code via `actions/checkout@v5`
     -   Configures SSH and SSH Key Access on the runner
