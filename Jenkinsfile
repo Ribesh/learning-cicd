@@ -60,7 +60,9 @@ EOF
             steps {
                 sh '''
                 ssh ec2-user@${SERVER_IP} -i mykey.pem -T \
-                    'docker stop learning-cicd && docker rm learning-cicd && docker run -d --name learninig-cicd -p 80:80 ${DOCKER_USERNAME}/learning-cicd-1:${IMAGE_TAG}'
+                    "docker stop learning-cicd || true && \
+                     docker rm learning-cicd || true && \
+                     docker run -d --name learninig-cicd -p 80:80 ${DOCKER_USERNAME}/learning-cicd-1:${IMAGE_TAG}"
                 '''
             }
         }
