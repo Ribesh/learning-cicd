@@ -4,7 +4,7 @@ pipeline {
     parameters {
         string(
             name: 'SERVER_IP',
-            defaultValue: '18.207.158.50',
+            defaultValue: '54.87.49.165',
             description: 'Enter server IP address'
         )
     }
@@ -44,7 +44,7 @@ EOF
             steps {
                 sh '''
                 ssh ec2-user@${SERVER_IP} -i mykey.pem -T \
-                    'cd /usr/share/nginx/html && git pull origin main'
+                    'cd /usr/share/nginx/html && git pull origin jenkins'
                 '''
             }
         }
