@@ -48,7 +48,7 @@ EOF
             steps{
                 withCredentials([string(credentialsId: 'DOCKER_PASSWORD', variable: 'DOCKER_PASSWORD')]) {
                     sh '''
-                        docker build -t ${DOCKER_USERNAME}/learning-cicd-1:${IMAGE_TAG} .
+                        docker buildx build --platform linux/amd64 -t ${DOCKER_USERNAME}/learning-cicd-1:${IMAGE_TAG} .
                         echo $DOCKER_PASSWORD | docker login --username ${DOCKER_USERNAME} --password-stdin
                         docker push ${DOCKER_USERNAME}/learning-cicd-1:${IMAGE_TAG}
                     '''
