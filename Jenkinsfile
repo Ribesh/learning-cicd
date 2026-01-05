@@ -4,13 +4,16 @@ pipeline {
     parameters {
         string(
             name: 'SERVER_IP',
-            defaultValue: '54.87.49.165',
+            defaultValue: '52.73.93.84',
             description: 'Enter server IP address'
         )
     }
     
     environment {
         SERVER_IP   =   "${params.SERVER_IP}"
+        DOCKER_USERNAME = "ribeshshr"
+        IMAGE_TAG   =   "${BUILD_NUMBER}"
+
     }
     
     stages {
@@ -41,9 +44,15 @@ EOF
             }
         }
 
-        stage('Docker'){
+        stage('Build & Push Docker Image'){
             steps{
-                sh 'docker ps'
+                withCredentials([string(credentialsId: 'DOCKER_PASSWORD', variable: 'DOCKER_PASSWORD')]) {
+                    sh '''
+                        docker build -t ${DOCKER_USERNAME}/learning-cicd-1:${IMAGE_TAG} .
+                        echo $DOCKER_PASSWORD | docker login --username ${DOCKER_USERNAME} --password-stdin
+                        docker push ${DOCKER_USERNAME}/learning-cicd-1:${IMAGE_TAG}
+                    '''
+                }
             }
         }
 
@@ -51,7 +60,7 @@ EOF
             steps {
                 sh '''
                 ssh ec2-user@${SERVER_IP} -i mykey.pem -T \
-                    'cd /usr/share/nginx/html && git pull origin jenkins'
+                    'docker stop learning-cicd || docker rm learning-cicd || docker run -d --name learninig-cicd -p 80:80 ${DOCKER_USERNAME}/learning-cicd-1:${IMAGE_TAG}'
                 '''
             }
         }
