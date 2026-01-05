@@ -43,7 +43,7 @@ EOF
 
         stage('Docker'){
             steps{
-                sh 'docker -version'
+                sh 'docker ps'
             }
         }
 
